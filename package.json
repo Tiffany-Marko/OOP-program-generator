@@ -1,0 +1,23 @@
+{
+  "name": "oop-program-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tiffany-Marko/OOP-program-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tiffany-Marko/OOP-program-generator/issues"
+  },
+  "homepage": "https://github.com/Tiffany-Marko/OOP-program-generator#readme",
+  "dependencies": {
+    "inquirer": "^9.1.4"
+  }
+}
