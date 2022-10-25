@@ -1,7 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 
-
 async function main() {
     let answers = {};
     const manager = await inquirer.prompt([
