@@ -1,5 +1,8 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const Manager = require("./Manager");
+const Engineer = require("./Engineer");
+const Intern = require("./Intern");
 
 async function main() {
     let answers = {};
@@ -102,24 +105,31 @@ async function main() {
     }
     function renderEngineers(){
         return answers.engineers.map(function(engineer){
+            const engineerInstance = new Engineer(engineer.engineerName,engineer.engineerId,engineer.engineerEmail,engineer.engineerGithub)
             return ` <h2>Engineer Info</h2>
-            <p>Name:${engineer.engineerName}</p>
-            <p>ID:${engineer.engineerId}</p>
-            <p>Email:  <a href= "mailto:${engineer.engineerEmail}">${engineer.engineerEmail}</a> </p>
-            <p>Github:<a href = "https://github.com/${engineer.engineerGithub}">${engineer.engineerGithub}</a></p>`
+            <p>Name:${engineerInstance.getName()}</p>
+            <p>ID:${engineerInstance.getId()}</p>
+            <p>Email:  <a href= "mailto:${engineerInstance.getEmail()}">${engineerInstance.getEmail()}</a> </p>
+            <p>Github:<a href = "https://github.com/${engineerInstance.getGithub()}">${engineerInstance.getGithub()}</a></p>`
         })
-
     }
     function renderInterns(){
         return answers.interns.map(function(intern){
+            const internInstance = new Intern(intern.internName,intern.internId,intern.internEmail,intern.internSchool)
             return ` <h2>Intern Info</h2>
-            <p>Name:${intern.internName}</p>
-            <p>ID:${intern.internId}</p>
-            <p>Email:  <a href= "mailto:${intern.internEmail}">${intern.internEmail}</a> </p>
-            <p>School:${intern.internSchool}</p>`
+            <p>Name:${internInstance.getName()}</p>
+            <p>ID:${internInstance.getId()}</p>
+            <p>Email:  <a href= "mailto:${internInstance.getEmail()}">${internInstance.getEmail()}</a> </p>
+            <p>School:${internInstance.getSchool()}</p>`
         })
     }
     console.log(answers)
+
+    const managerInstance = new Manager(answers.manager.name, answers.manager.id, answers.manager.email,
+        answers.manager.office)
+        console.log(managerInstance.getEmail())
+
+
     const HTML = `
     <!DOCTYPE html>
 <html lang="en">
@@ -132,9 +142,9 @@ async function main() {
 <body>
     <div >
         <h2>Manager Info</h2>
-        <p>Name:${answers.manager.name}</p>
-        <p>ID:${answers.manager.id}</p>
-        <p>Email:  <a href= "mailto:${answers.manager.email}">${answers.manager.email}</a> </p>
+        <p>Name:${managerInstance.getName()}</p>
+        <p>ID:${managerInstance.getId()}</p>
+        <p>Email:  <a href= "mailto:${managerInstance.getEmail()}">${managerInstance.getEmail()}</a> </p>
         <p>Office:${answers.manager.office}</p>
         
         
@@ -151,7 +161,6 @@ async function main() {
 </html>
     
     `
-    console.log(HTML)
     fs.writeFile("index.html",HTML, (err) => {
         console.log(err)
     })
