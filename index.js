@@ -106,21 +106,21 @@ async function main() {
     function renderEngineers(){
         return answers.engineers.map(function(engineer){
             const engineerInstance = new Engineer(engineer.engineerName,engineer.engineerId,engineer.engineerEmail,engineer.engineerGithub)
-            return ` <h2>Engineer Info</h2>
+            return ` <div><h2>Engineer Info</h2>
             <p>Name:${engineerInstance.getName()}</p>
             <p>ID:${engineerInstance.getId()}</p>
             <p>Email:  <a href= "mailto:${engineerInstance.getEmail()}">${engineerInstance.getEmail()}</a> </p>
-            <p>Github:<a href = "https://github.com/${engineerInstance.getGithub()}">${engineerInstance.getGithub()}</a></p>`
+            <p>Github:<a href = "https://github.com/${engineerInstance.getGithub()}">${engineerInstance.getGithub()}</a></p></div>`
         })
     }
     function renderInterns(){
         return answers.interns.map(function(intern){
             const internInstance = new Intern(intern.internName,intern.internId,intern.internEmail,intern.internSchool)
-            return ` <h2>Intern Info</h2>
+            return ` <div><h2>Intern Info</h2>
             <p>Name:${internInstance.getName()}</p>
             <p>ID:${internInstance.getId()}</p>
             <p>Email:  <a href= "mailto:${internInstance.getEmail()}">${internInstance.getEmail()}</a> </p>
-            <p>School:${internInstance.getSchool()}</p>`
+            <p>School:${internInstance.getSchool()}</p></div>`
         })
     }
     console.log(answers)
@@ -151,10 +151,10 @@ async function main() {
 
     </div>
     <div>
-    ${renderInterns()}
+    ${renderInterns().join("")}
     </div> 
     <div>
-    ${renderEngineers()}
+    ${renderEngineers().join("")}
     </div>
     
 </body>
